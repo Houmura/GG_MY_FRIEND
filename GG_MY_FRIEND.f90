@@ -2,35 +2,35 @@ PROGRAM GG_MY_FRIEND
  IMPLICIT NONE
  INTEGER N
  REAL NUM
- REAL P_A, P_B, P_C, P_D, P_E     !�ٷֱ���ʽ
- REAL PA, PB, PC, PD, PE, P, PV   !С����ʽ
- !����Ϊ�¼�����
+ REAL P_A, P_B, P_C, P_D, P_E     !百分比形式
+ REAL PA, PB, PC, PD, PE, P, PV   !小数形式
+ !以下为事件概率
  REAL A, B, C, D, E
  REAL AB, AC, AD, AE, BC, BD, BE, CD, CE, DE
  REAL ABC, ABD, ABE, ACD, ACE, ADE, BCD, BCE, BDE, CDE
  REAL ABCD, ACDE, ABDE, ABCE, BCDE
  REAL ABCDE 
  
- PRINT *,'�������߻��ҵ���ʼ�����  [Version 1.0 beta]'
+ PRINT *,'碧蓝航线活动毕业概率计算器  [Version 1.0 beta]'
  PRINT *,''
  PRINT *,'Nothing. All rights reserved.'
  
 10086 PRINT *,'';PRINT *,''
- PRINT *,'�����뽨�������   (���س���ȷ������)'
+ PRINT *,'请输入建造次数：   (按回车键确认输入)'
   READ *,N
    IF (N<0) THEN
-    PRINT *,'������������������������룡'
+    PRINT *,'输入数据有误，请检查后重新输入！'
     GOTO 10086
    END IF
  PRINT *,'';PRINT *,''  
- PRINT *,'�������޶����ĸ�����   (���س���ȷ������)'
+ PRINT *,'请输入限定船的个数：   (按回车键确认输入)'
   READ *,NUM
   
  
  SELECT CASE(INT(NUM))
  
   CASE(1)
-   PRINT *,'�������һ�Ҵ��Ľ�����ʣ���λ:%��'
+   PRINT *,'请输入第一艘船的建造概率（单位:%）'
    READ *,P_A
    PRINT *,'';PRINT *,''  
     PA = P_A/100
@@ -39,18 +39,18 @@ PROGRAM GG_MY_FRIEND
     PV = 100-P
     P = INT(P*1E6)/1E6                     
     PV = INT(PV*1E6)/1E6
-   PRINT"(1X,I6,'�ν���δ��ҵ�ĸ���Ϊ:',F7.3,'%')",N,P
-   PRINT"(1X,I6,'�ν����ҵ�ĸ���Ϊ:',F7.3,'%')",N,PV
+   PRINT"(1X,I6,'次建造未毕业的概率为:',F7.3,'%')",N,P
+   PRINT"(1X,I6,'次建造毕业的概率为:',F7.3,'%')",N,PV
    
    GO TO 10086
     
   CASE(2)
-   PRINT *,'�������һ�Ҵ��Ľ�����ʣ���λ:%��'
+   PRINT *,'请输入第一艘船的建造概率（单位:%）'
    READ *,P_A
    PRINT *,'';PRINT *,''  
     PA = P_A/100
     A =(1-PA)**N
-   PRINT *,'������ڶ��Ҵ��Ľ�����ʣ���λ:%��'
+   PRINT *,'请输入第二艘船的建造概率（单位:%）'
    READ *,P_B
    PRINT *,'';PRINT *,''  
     PB = P_B/100
@@ -60,23 +60,23 @@ PROGRAM GG_MY_FRIEND
     PV = 100-P
     P = INT(P*1E6)/1E6
     PV = INT(PV*1E6)/1E6
-   PRINT"(1X,I6,'�ν���δ��ҵ�ĸ���Ϊ:',F7.3,'%')",N,P
-   PRINT"(1X,I6,'�ν����ҵ�ĸ���Ϊ:',F7.3,'%')",N,PV
+   PRINT"(1X,I6,'次建造未毕业的概率为:',F7.3,'%')",N,P
+   PRINT"(1X,I6,'次建造毕业的概率为:',F7.3,'%')",N,PV
    
    GO TO 10086
     
   CASE(3)
-   PRINT *,'�������һ�Ҵ��Ľ�����ʣ���λ:%��'
+   PRINT *,'请输入第一艘船的建造概率（单位:%）'
    READ *,P_A
    PRINT *,'';PRINT *,''  
     PA = P_A/100
     A =(1-PA)**N
-   PRINT *,'������ڶ��Ҵ��Ľ�����ʣ���λ:%��'
+   PRINT *,'请输入第二艘船的建造概率（单位:%）'
    READ *,P_B
    PRINT *,'';PRINT *,''  
     PB = P_B/100
     B =(1-PB)**N
-   PRINT *,'����������Ҵ��Ľ�����ʣ���λ:%��'
+   PRINT *,'请输入第三艘船的建造概率（单位:%）'
    READ *,P_C
    PRINT *,'';PRINT *,''  
     PC = P_C/100
@@ -89,23 +89,25 @@ PROGRAM GG_MY_FRIEND
     PV = 100-P
     P = INT(P*1E6)/1E6
     PV = INT(PV*1E6)/1E6
-    PRINT"(1X,I6,'�ν���δ��ҵ�ĸ���Ϊ:',F7.3,'%')",N,P
-    PRINT"(1X,I6,'�ν����ҵ�ĸ���Ϊ:',F7.3,'%')",N,PV
+    PRINT"(1X,I6,'次建造未毕业的概率为:',F7.3,'%')",N,P
+    PRINT"(1X,I6,'次建造毕业的概率为:',F7.3,'%')",N,PV
+    
+    GO TO 10086
     
   CASE(4)
-   PRINT *,'�������һ�Ҵ��Ľ�����ʣ���λ:%��'
+   PRINT *,'请输入第一艘船的建造概率（单位:%）'
    READ *,P_A
     PA = P_A/100
     A =(1-PA)**N
-   PRINT *,'������ڶ��Ҵ��Ľ�����ʣ���λ:%��'
+   PRINT *,'请输入第二艘船的建造概率（单位:%）'
    READ *,P_B
     PB = P_B/100
     B =(1-PB)**N
-   PRINT *,'����������Ҵ��Ľ�����ʣ���λ:%��'
+   PRINT *,'请输入第三艘船的建造概率（单位:%）'
    READ *,P_C
     PC = P_C/100
     C =(1-PC)**N
-   PRINT *,'����������Ҵ��Ľ�����ʣ���λ:%��'
+   PRINT *,'请输入第四艘船的建造概率（单位:%）'
    READ *,P_D
    PRINT *,'';PRINT *,''  
     PD = P_D/100
@@ -125,33 +127,33 @@ PROGRAM GG_MY_FRIEND
     PV = 100-P
     P = INT(P*1E6)/1E6
     PV = INT(PV*1E6)/1E6
-    PRINT"(1X,I6,'�ν���δ��ҵ�ĸ���Ϊ:',F7.3,'%')",N,P
-    PRINT"(1X,I6,'�ν����ҵ�ĸ���Ϊ:',F7.3,'%')",N,PV
+    PRINT"(1X,I6,'次建造未毕业的概率为:',F7.3,'%')",N,P
+    PRINT"(1X,I6,'次建造毕业的概率为:',F7.3,'%')",N,PV
     
     GO TO 10086
     
   CASE(5)
-   PRINT *,'�������һ�Ҵ��Ľ�����ʣ���λ:%��'
+   PRINT *,'请输入第一艘船的建造概率（单位:%）'
    READ *,P_A
    PRINT *,'';PRINT *,''  
     PA = P_A/100
     A =(1-PA)**N
-   PRINT *,'������ڶ��Ҵ��Ľ�����ʣ���λ:%��'
+   PRINT *,'请输入第二艘船的建造概率（单位:%）'
    READ *,P_B
    PRINT *,'';PRINT *,''  
     PB = P_B/100
     B =(1-PB)**N
-   PRINT *,'����������Ҵ��Ľ�����ʣ���λ:%��'
+   PRINT *,'请输入第三艘船的建造概率（单位:%）'
    READ *,P_C
    PRINT *,'';PRINT *,''  
     PC = P_C/100
     C =(1-PC)**N
-   PRINT *,'����������Ҵ��Ľ�����ʣ���λ:%��'
+   PRINT *,'请输入第四艘船的建造概率（单位:%）'
    READ *,P_D
    PRINT *,'';PRINT *,''  
     PD = P_D/100
     D =(1-PD)**N
-   PRINT *,'����������Ҵ��Ľ�����ʣ���λ:%��'
+   PRINT *,'请输入第五艘船的建造概率（单位:%）'
    READ *,P_E
    PRINT *,'';PRINT *,''  
     PE = P_E/100
@@ -188,16 +190,16 @@ PROGRAM GG_MY_FRIEND
     PV = 100-P
     P = INT(P*1E6)/1E6
     PV = INT(PV*1E6)/1E6
-    PRINT"(1X,I6,'�ν���δ��ҵ�ĸ���Ϊ:',F7.3,'%')",N,P
-    PRINT"(1X,I6,'�ν����ҵ�ĸ���Ϊ:',F7.3,'%')",N,PV
+    PRINT"(1X,I6,'次建造未毕业的概率为:',F7.3,'%')",N,P
+    PRINT"(1X,I6,'次建造毕业的概率为:',F7.3,'%')",N,PV
     
     GO TO 10086
   CASE(6:)
-   PRINT *,'��Ǹ�����������ݲ�֧��6�Ҵ������ϵĸ��ʼ���'
+   PRINT *,'抱歉，本计算器暂不支持6艘船及以上的概率计算'
    GO TO 10086
    
   CASE DEFAULT 
-   PRINT *,'������������������������룡'
+   PRINT *,'输入数据有误，请检查后重新输入！'
    GO TO 10086
   END SELECT 
   
