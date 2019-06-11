@@ -8,7 +8,7 @@
 
 #下载地址:
 
-https://github.com/Houmura/GG_MY_FRIEND/blob/master/GG_MY_FRIEND.exe
+https://github.com/Houmura/GG_MY_FRIEND/archive/master.zip
 
 
-2019.2.1
+2019.6.11
