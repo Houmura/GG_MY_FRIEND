@@ -82,7 +82,8 @@
 <br>
 
 ## 下载地址：
-> Windows版本：https://github.com/Houmura/GG_MY_FRIEND/releases/download/2.0_Release/GG_MY_FRIEND_win_x64.zip
+> Windows版本：https://github.com/Houmura/GG_MY_FRIEND/releases/download/2.0_Release/GG_MY_FRIEND_win_x64.zip  
+> 
 > Linux版本：https://github.com/Houmura/GG_MY_FRIEND/releases/download/2.0_Release/GG_MY_FRIEND_linux_x64.zip 
 
 <br> 
