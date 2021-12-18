@@ -1,0 +1,6 @@
+INCLUDE_DIRECTORIES(${CMAKE_Fortran_MODULE_DIRECTORY})
+ADD_LIBRARY(core core.f90)
+ADD_LIBRARY(ui ui.f90 core.f90 ../external/option.f90) 
+ADD_DEPENDENCIES(ui core opt)
+ADD_LIBRARY(cl cl.f90 ui.f90 ../external/option.f90)
+ADD_DEPENDENCIES(cl opt ui)

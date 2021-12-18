@@ -1,0 +1,33 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 3.10)
+PROJECT(AZCalculator 
+		VERSION 2.0
+		LANGUAGES Fortran)
+
+# 根据不同操作系统选择UTF-8还是GB2312编码的文件，避免显示乱码
+if (WIN32)
+	set(platform "win")
+else()
+	set(platform "unix")
+	set(CMAKE_BUILD_TYPE "Release")
+endif (WIN32)
+
+# 防手贱
+set(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
+set(CMAKE_DISABLE_SOURCE_CHANGES ON)
+
+# 设置输出binary文件以及源码所在的位置
+SET(PROJECT_BINARY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/build/${platform}/bin)
+SET(PROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src/${platform})
+SET(PROJECT_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
+SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR})
+SET(CMAKE_Fortran_MODULE_DIRECTORY ${PROJECT_BINARY_DIR}/..)
+
+# 显示提示
+MESSAGE(STATUS "This is ROOT dir " ${PROJECT_ROOT_PATH})
+MESSAGE(STATUS "This is BINARY dir " ${PROJECT_BINARY_DIR})
+MESSAGE(STATUS "This is SOURCE dir " ${PROJECT_SOURCE_DIR})
+
+# 添加src
+ADD_SUBDIRECTORY(src/${platform})
+ADD_SUBDIRECTORY(src/${platform}/external)
+ADD_SUBDIRECTORY(src/${platform}/modules)
