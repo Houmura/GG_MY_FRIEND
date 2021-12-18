@@ -52,20 +52,20 @@
 <br> 
 
 * 命令行参数说明
-> * 给定抽卡次数，计算抽齐毕业的概率(forward_mode)
-> `AZCalculator -f -v [变量数] -n [抽卡次数] -ps [卡片1的掉率 [[卡片2的掉率] ...] ]` 
+> * 给定抽卡次数，计算抽齐毕业的概率(forward_mode)： 
+>  `AZCalculator -f -v [变量数] -n [抽卡次数] -ps [卡片1的掉率 [[卡片2的掉率] ...] ]`  
 > <br>
 > <br>
-> 例如： `AZCalculator -f -v 2 -n 100 -ps 0.5 2.5` 代表两张卡片，掉落概率分别为0.5% 和 2.5%，求抽 100 次就能抽齐的概率。
+> 例如：  AZCalculator -f -v 2 -n 100 -ps 0.5 2.5  代表两张卡片，掉落概率分别为0.5% 和 2.5%，求抽 100 次就能抽齐的概率。
 > <br> 
 > <br>
 > <br>
 > <br>
-> * 给定毕业的概率，计算达到此概率所需要的抽卡次数(inversed_mode)
-> `AZCalculator -i -v [变量数] -p [毕业的概率] -ps [卡片1的掉率 [[卡片2的掉率] ...] ]` 
+> * 给定毕业的概率，计算达到此概率所需要的抽卡次数(inversed_mode)： 
+>  `AZCalculator -i -v [变量数] -p [毕业的概率] -ps [卡片1的掉率 [[卡片2的掉率] ...] ]`  
 > <br>
 > <br>
-> 例如： `AZCalculator -i -v 2 -p 95.0 -ps 0.5 2.5` 代表两张卡片，掉落概率分别为0.5% 和 2.5%，求要以 95% 的概率抽齐，需要抽多少次。 
+> 例如：  AZCalculator -i -v 2 -p 95.0 -ps 0.5 2.5  代表两张卡片，掉落概率分别为0.5% 和 2.5%，求要以 95% 的概率抽齐，需要抽多少次。 
 
 <br> 
 <br>
@@ -81,6 +81,14 @@
 <br>
 <br>
 
+## 下载地址：
+> Windows版本：https://github.com/Houmura/GG_MY_FRIEND/releases/download/2.0_Release/GG_MY_FRIEND_win_x64.zip
+> Linux版本：https://github.com/Houmura/GG_MY_FRIEND/releases/download/2.0_Release/GG_MY_FRIEND_linux_x64.zip 
+
+<br> 
+<br>
+<br>
+<br>
 
 # Credit:
 使用了 fccf/option 的代码来处理命令行的参数
