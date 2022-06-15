@@ -23,10 +23,10 @@ module ui
     subroutine print_tool_info()
 
         write(*,*) "┌------------------------------------------------┐"
-        write(*,*) "   碧蓝航线活动毕业概率计算器  [version 2.1]        "
+        write(*,*) "   碧蓝航线活动毕业概率计算器  [version 2.2]        "
         write(*,*) "                                                    "
         write(*,*) "                                                    "
-        write(*,*) "                                     2021.1.20      "
+        write(*,*) "                                     2021.6.15      "
         write(*,*) "                                                    "
         write(*,*) "                  Nothing. All rights reserved.     "
         write(*,*) "└------------------------------------------------┘"
@@ -77,7 +77,7 @@ module ui
 
         write(*,*)       ""  
         write(*,*)       "┌------------------------------------------------┐"
-        write(*,'(1x,A,I1,A)')"   请输入第 ",i," 张卡的出现概率(单位:%)："
+        write(*,'(1x,A,I2,A)')"   请输入第 ",i," 张卡的出现概率(单位:%)："
         write(*,*)       "└------------------------------------------------┘"
         write(*,*)       ""    
 
@@ -212,7 +212,7 @@ module ui
                             write(*,*)"请输入合法的概率(单位: %)"
                         end if
                     end if
-                    write(*,'(1x,A,I1,A,F5.2,A)')"   第",i,"张卡的出现概率为",probabilities(i),"%. "
+                    write(*,'(1x,A,I2,A,F5.2,A)')"   第",i,"张卡的出现概率为",probabilities(i),"%. "
                 end if
             end do
         end do

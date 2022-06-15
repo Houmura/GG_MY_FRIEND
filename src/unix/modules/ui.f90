@@ -13,27 +13,20 @@ module ui
     ! 公共变量声明区
     integer,dimension(1) :: times                       !抽卡次数
     integer,dimension(1) :: vars                        !变量数
-    integer,dimension(1) :: mode                  !计算模式
+    integer,dimension(1) :: mode                        !计算模式
     real,dimension(1) :: given_prob                     !给定概率
     real,allocatable,dimension(:) :: probabilities      !各卡片的概率数组(小数形式)
     
-    real :: pa, pb, pc, pd, pe              !出现各卡的概率(小数形式)
-    !real :: p_a, p_b, p_c, p_d, p_e         !出现各卡的概率(百分比形式)
-
-    !integer :: arg_pos = 0               ! Number of arguments
-    !logical :: is_forward, is_inversed   ! Function flags
-    !character(len=64) :: arg             ! Hold the argument
-
 
     contains
     
     subroutine print_tool_info()
 
         write(*,*) "┌------------------------------------------------┐"
-        write(*,*) "   碧蓝航线活动毕业概率计算器  [version 2.0]   "
+        write(*,*) "   碧蓝航线活动毕业概率计算器  [version 2.2]        "
         write(*,*) "                                                    "
         write(*,*) "                                                    "
-        write(*,*) "                                      2021.12.17    "
+        write(*,*) "                                     2021.6.15      "
         write(*,*) "                                                    "
         write(*,*) "                  Nothing. All rights reserved.     "
         write(*,*) "└------------------------------------------------┘"
@@ -84,7 +77,7 @@ module ui
 
         write(*,*)       ""  
         write(*,*)       "┌------------------------------------------------┐"
-        write(*,'(1x,A,I1,A)')"   请输入第 ",i," 张卡的出现概率(单位:%)："
+        write(*,'(1x,A,I2,A)')"   请输入第 ",i," 张卡的出现概率(单位:%)："
         write(*,*)       "└------------------------------------------------┘"
         write(*,*)       ""    
 
@@ -194,7 +187,7 @@ module ui
                     if (vars(1) > 0) then
                         exit
                     else
-                        write(*,*)"请输入合法的变量数(1-5)"
+                        write(*,*)"请输入合法的变量数"
                     end if
                 end if
             end if
@@ -219,7 +212,7 @@ module ui
                             write(*,*)"请输入合法的概率(单位: %)"
                         end if
                     end if
-                    write(*,'(1x,A,I1,A,F5.2,A)')"   第",i,"张卡的出现概率为",probabilities(i),"%. "
+                    write(*,'(1x,A,I2,A,F5.2,A)')"   第",i,"张卡的出现概率为",probabilities(i),"%. "
                 end if
             end do
         end do
@@ -282,29 +275,17 @@ module ui
         implicit none
 
         integer,dimension(:),intent(in) :: vars
+        integer                         :: i
        
         call show_fw_config(vars(1),probabilities)
 
-        if (vars(1) >= 5) call percentage2decimal(probabilities(5),pe)
-        if (vars(1) >= 4) call percentage2decimal(probabilities(4),pd)
-        if (vars(1) >= 3) call percentage2decimal(probabilities(3),pc)
-        if (vars(1) >= 2) call percentage2decimal(probabilities(2),pb)
-        if (vars(1) >= 1) call percentage2decimal(probabilities(1),pa)
+        ! 转换概率到小数形式
+        do i = 1, vars(1)
+            call percentage2decimal(probabilities(i),probabilities(i))
+        end do
         
-        if (vars(1)==1) then 
-            call calculate_probability(times(1),pa,given_prob(1))
-        else if ((vars(1)==2)) then
-            call calculate_probability(times(1),pa,pb,given_prob(1))
-        else if ((vars(1)==3)) then
-            call calculate_probability(times(1),pa,pb,pc,given_prob(1))
-        else if ((vars(1)==4)) then
-            call calculate_probability(times(1),pa,pb,pc,pd,given_prob(1))
-        else if ((vars(1)==5)) then
-            call calculate_probability(times(1),pa,pb,pc,pd,pe,given_prob(1))
-        else
-            error stop "Case that variables are more then 5 currently is not supported!"
-        end if
-        
+        call calculate_probability(vars(1), times(1), probabilities, given_prob(1))
+
         call show_probability(times(1),given_prob(1))
 
     end subroutine forward_calculation
@@ -328,28 +309,13 @@ module ui
         call percentage2decimal(given_prob(1),given_prob(1))
             
 
-        if (vars(1) >= 5) call percentage2decimal(probabilities(5),pe)
-        if (vars(1) >= 4) call percentage2decimal(probabilities(4),pd)
-        if (vars(1) >= 3) call percentage2decimal(probabilities(3),pc)
-        if (vars(1) >= 2) call percentage2decimal(probabilities(2),pb)
-        if (vars(1) >= 1) call percentage2decimal(probabilities(1),pa)
+        ! 转换概率到小数形式
+        do i = 1, vars(1)
+            call percentage2decimal(probabilities(i),probabilities(i))
+        end do
 
         do i = 0, max_times
-            if (vars(1)==1) then 
-                call calculate_probability(i,pa,current_prob)
-            else if ((vars(1)==2)) then
-                call calculate_probability(i,pa,pb,current_prob)
-            else if ((vars(1)==3)) then
-                call calculate_probability(i,pa,pb,pc,current_prob)
-            else if ((vars(1)==4)) then
-                call calculate_probability(i,pa,pb,pc,pd,current_prob)
-            else if ((vars(1)==5)) then
-                call calculate_probability(i,pa,pb,pc,pd,pe,current_prob)
-            else
-                error stop "Case that variables are more then 5 currently is not supported!"
-            end if
-
-        
+            call calculate_probability(vars(1), i, probabilities, current_prob)
 
             if (current_prob < 1 - given_prob(1)) then
                 times(1) = i
