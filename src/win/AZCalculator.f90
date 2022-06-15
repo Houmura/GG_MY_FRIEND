@@ -1,16 +1,17 @@
 program azcalculator
 
 ! --------------------------------------------------
-!   碧蓝航线活动毕业概率计算器  [version 2.0]
+!   碧蓝航线活动毕业概率计算器  [version 2.1]
 !    
 !
-!   2021.12.17
+!   2022.1.20
 !
 !   Nothing. All rights reserved.'
 ! --------------------------------------------------
 
     use ui
     use option
+
     use cl
 
     implicit none
